@@ -1,0 +1,11 @@
+{
+  "linterOptions": {
+    "exclude": [
+      "node_modules"
+    ]
+  },
+  "quotemark": [
+    true,
+    "single"
+  ]
+}
