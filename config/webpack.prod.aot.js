@@ -1,32 +1,33 @@
 /**
- * Non AOT Production Build
+ * AOT Production Build
  */
 const path = require('path');
 const webpack = require('webpack');
 const helpers = require('./helpers');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
+const ENV = (process.env.NODE_ENV = process.env.ENV = 'production');
+const AngularCompilerPlugin = require('@ngtools/webpack').AngularCompilerPlugin;
 
 module.exports = {
   entry: {
     polyfills: './src/polyfill.ts',
-    vendor: './src/vendor.ts',
+    vendor: './src/vendor-aot.ts',
     app: './src/main.ts'
   },
   output: {
-    path: helpers.root('dist/non-aot'),
+    path: helpers.root('dist/aot'),
     publicPath: '/',
     filename: '[name].bundle.js',
     chunkFilename: '[id].chunk.js'
   },
   resolve: {
-    extensions: ['.ts', '.js']
+    extensions: ['.js', '.ts']
   },
   module: {
     loaders: [
       {
-        test: /\.ts$/,
-        loaders: ['babel-loader', 'awesome-typescript-loader', 'angular2-template-loader']
+        test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
+        loader: '@ngtools/webpack'
       },
       {
         test: /\.html$/,
@@ -34,10 +35,15 @@ module.exports = {
       }
     ]
   },
-
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
       name: ['app', 'vendor', 'polyfills']
+    }),
+    // AOT Plugin
+    new AngularCompilerPlugin({
+      tsConfigPath: './tsconfig.aot.json',
+      entryModule: helpers.root('src/app/app.module#AppModule'),
+      sourceMap: true
     }),
     new HtmlWebpackPlugin({
       template: 'src/app/index.html'

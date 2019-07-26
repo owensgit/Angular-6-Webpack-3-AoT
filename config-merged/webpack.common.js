@@ -77,8 +77,7 @@ module.exports = {
     }),
 
     new HtmlWebpackPlugin({
-      template: 'src/app/index.html',
-      // inject: 'head'
+      template: 'src/app/index.html'
     })
   ]
 };

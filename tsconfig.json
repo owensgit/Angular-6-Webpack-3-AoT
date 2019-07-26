@@ -1,16 +1,29 @@
 {
-    "compilerOptions": {
-        "target": "es6",
-        "module": "commonjs",
-        "moduleResolution": "node",
-        "sourceMap": true,
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true,
-        "lib": ["es5", "es6", "dom"],
-        "noImplicitAny": true,
-        "suppressImplicitAnyIndexErrors": true,
-        "types": ["node"],
-        "typeRoots": ["./node_modules/@types"]
-    },
-    "exclude": ["node_modules", "src/main.aot.ts", "aot", "**.spec.ts"]
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": [
+      "es5",
+      "es6",
+      "dom"
+    ],
+    "noImplicitAny": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "types": [
+      "node"
+    ],
+    "typeRoots": [
+      "./node_modules/@types"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "src/main-aot.ts",
+    "aot",
+    "**.spec.ts"
+  ]
 }

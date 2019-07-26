@@ -4,11 +4,9 @@
   "description": "Simple set up of an Angular application using a custom Webpack config",
   "scripts": {
     "start": "webpack-dev-server --inline --hot --progress --port 8080",
-    "build": "rimraf dist && ./node_modules/webpack/bin/webpack.js --progress --profile --bail",
-    "build:aot": "ngc -p tsconfig-aot.json",
-    "build-aot-prod": "npm run build:aot && npm run webpack-prod",
-    "webpack-dev": "cross-env NODE_ENV=development ./node_modules/webpack/bin/webpack.js",
-    "webpack-prod": "cross-env NODE_ENV=production ./node_modules/webpack/bin/webpack.js"
+    "build:dev": "cross-env NODE_ENV=development ./node_modules/webpack/bin/webpack.js",
+    "build:prod": "cross-env NODE_ENV=production ./node_modules/webpack/bin/webpack.js",
+    "build:prod-aot": "cross-env NODE_ENV=prod-aot ./node_modules/webpack/bin/webpack.js"
   },
   "author": "Owen Evans",
   "dependencies": {
@@ -26,8 +24,8 @@
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
-    "@angular/compiler-cli": "^6.1.10",
-    "@ngtools/webpack": "^8.1.2",
+    "@angular/compiler-cli": "^6.1.1",
+    "@ngtools/webpack": "^1.10.2",
     "@types/jasmine": "~2.8.8",
     "@types/node": "^10.14.1",
     "angular2-template-loader": "^0.6.2",

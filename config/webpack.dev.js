@@ -1,34 +1,50 @@
-var webpackMerge = require("webpack-merge");
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
-var commonConfig = require("./webpack.common.js");
-var helpers = require("./helpers");
-var webpack = require("webpack");
+var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var helpers = require('./helpers');
+var path = require('path');
 
-module.exports = webpackMerge(commonConfig, {
-  devtool: "cheap-module-eval-source",
-
+module.exports = {
+  devtool: 'cheap-module-eval-source-map',
+  entry: {
+    polyfills: './src/polyfill.ts',
+    vendor: './src/vendor.ts',
+    app: './src/main.ts'
+  },
   output: {
-    path: helpers.root("dist"),
-    publicPath: "/",
-    filename: "[name].bundle.js",
-    chunkFilename: "[id].chunk.js"
+    path: helpers.root('dist'),
+    publicPath: 'http://localhost:8080/',
+    filename: '[name].js',
+    chunkFilename: '[id].chunk.js'
   },
-
-  devServer: {
-    contentBase: './dist',
-    historyApiFallback: true,
-    stats: "minimal"
+  resolve: {
+    extensions: ['.ts', '.js']
   },
-
-  plugins: [
-    new ExtractTextPlugin("[name].css"),
-
-    new webpack.DefinePlugin({
-      "process.env": {
-        API_URL: JSON.stringify("http://localhost:5000/api/")
+  module: {
+    loaders: [
+      {
+        test: /\.ts$/,
+        exclude: path.resolve(__dirname, 'node_modules'),
+        loaders: ['awesome-typescript-loader', 'angular2-template-loader']
+      },
+      {
+        test: /\.html$/,
+        loader: 'html-loader',
+        query: {
+          minimize: false // workaround for ng2
+        }
       }
+    ]
+  },
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      name: ['app', 'vendor', 'polyfills']
     }),
-
-    new webpack.NamedModulesPlugin()
-  ]
-});
+    new HtmlWebpackPlugin({
+      template: 'src/app/index.html'
+    })
+  ],
+  devServer: {
+    historyApiFallback: true,
+    stats: 'minimal'
+  }
+};
