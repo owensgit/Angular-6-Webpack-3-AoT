@@ -1,7 +1,7 @@
 {
-  "name": "angular-setup-webpack",
+  "name": "Angular-6-with-Webpack-3-AoT-Lazy-Loading",
   "version": "1.0.0",
-  "description": "Simple set up of an Angular application using a custom Webpack config",
+  "description": "Simple set up of an Angular 6 application using a custom config for Webpack 3, with lazy loading of module and Ahead of Time compilation, keeping the versions as-is to use a reference for legacy apps.",
   "scripts": {
     "start": "webpack-dev-server --inline --hot --progress --port 8080",
     "build:dev": "cross-env NODE_ENV=development ./node_modules/webpack/bin/webpack.js",
@@ -28,6 +28,7 @@
     "@ngtools/webpack": "^1.10.2",
     "@types/jasmine": "~2.8.8",
     "@types/node": "^10.14.1",
+    "angular-router-loader": "^0.8.5",
     "angular2-template-loader": "^0.6.2",
     "awesome-typescript-loader": "~3.1.2",
     "babel-core": "^6.26.0",
@@ -50,6 +51,7 @@
     "raw-loader": "0.5.1",
     "rimraf": "^2.6.2",
     "style-loader": "^0.16.1",
+    "tslint": "^5.18.0",
     "typescript": "~2.9.2",
     "webpack": "^3.12.0",
     "webpack-cli": "^3.3.6",

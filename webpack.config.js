@@ -1,7 +1,6 @@
-console.log('- - - - - - - - - - - - - -');
 console.log('Building for: ', process.env.NODE_ENV);
-console.log('- - - - - - - - - - - - - -');
-console.log('');
+console.log('Building for: ', process.env.ENV);
+
 switch (process.env.NODE_ENV) {
     case 'prod':
     case 'production':

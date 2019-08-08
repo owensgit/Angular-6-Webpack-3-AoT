@@ -22,8 +22,6 @@
   },
   "exclude": [
     "node_modules",
-    "src/main-aot.ts",
-    "aot",
-    "**.spec.ts"
+    "src/**/*.spec.ts"
   ]
 }

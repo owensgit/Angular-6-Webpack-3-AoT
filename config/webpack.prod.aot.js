@@ -43,7 +43,8 @@ module.exports = {
     new AngularCompilerPlugin({
       tsConfigPath: './tsconfig.aot.json',
       entryModule: helpers.root('src/app/app.module#AppModule'),
-      sourceMap: true
+      sourceMap: true,
+      nameLazyFiles: true,
     }),
     new HtmlWebpackPlugin({
       template: 'src/app/index.html'

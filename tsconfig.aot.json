@@ -15,10 +15,8 @@
   },
   "compileOnSave": true,
   "exclude": [
-    "node_modules/*",
-    "aot/",
-    "src/main.aot.ts",
-    "**.spec.ts"
+    "node_modules",
+    "src/**/*.spec.ts"
   ],
   "angularCompilerOptions": {
     "genDir": "aot/",

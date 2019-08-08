@@ -12,7 +12,7 @@ module.exports = {
   },
   output: {
     path: helpers.root('dist'),
-    publicPath: 'http://localhost:8080/',
+    publicPath: 'http://localhost:4200/', // used in script tags
     filename: '[name].js',
     chunkFilename: '[id].chunk.js'
   },
@@ -20,18 +20,38 @@ module.exports = {
     extensions: ['.ts', '.js']
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.ts$/,
         exclude: path.resolve(__dirname, 'node_modules'),
-        loaders: ['awesome-typescript-loader', 'angular2-template-loader']
+        use: [
+          {
+            loader: 'awesome-typescript-loader',
+            options: {
+              configFileName: 'tsconfig.json'
+            }
+          }, 
+          { loader: 'angular2-template-loader' }
+        ]
+      },
+      {
+        test: /\.(ts|js)$/,
+        use: [
+          {
+            loader: 'angular-router-loader'
+          }
+        ]
       },
       {
         test: /\.html$/,
-        loader: 'html-loader',
-        query: {
-          minimize: false // workaround for ng2
-        }
+        use: [
+          {
+            loader: 'html-loader'
+          }
+        ]
+        // query: {
+        //   minimize: false // workaround for ng2
+        // }
       }
     ]
   },
