@@ -34,6 +34,10 @@ module.exports = {
           { loader: 'angular2-template-loader' }
         ]
       },
+      /**
+       * A Webpack loader for Angular that enables string-based module loading with 
+       * the Angular Router, e.g. lazy loading of modules via loadChildren
+       */
       {
         test: /\.(ts|js)$/,
         use: [

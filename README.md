@@ -31,3 +31,7 @@ The config starts in _./webpack.config.js_, and is split into 3 files under _./c
 ### Ahead of Time Compliation
 
 AoT is implemented using the **AngularCompilerPlugin**, which is part of the **[@ngtools/webpack npm module](https://www.npmjs.com/package/@ngtools/webpack)**. This takes care of the AoT step and is only included in the _webpack.prod-aot.js_ config. This is on version `^1.10.2`, as I ran into issues running the latest version with Angular 6 and Webpack 3.
+
+### Lazy loading
+
+Lazy loading of Angular modules is achieved by enabling string-based module loading in the Angular routing configuration. In the development build, this is made possible by using the **[angular-router-loader](https://www.npmjs.com/package/angular-router-loader)**, in the Webpack config. For production AoT, the **AngularCompilerPlugin** handles it for you.
